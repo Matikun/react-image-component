@@ -6,13 +6,24 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1>Custom Image Component</h1>
-      <Image
-        src="https://via.placeholder.com/500x300"
-        alt="Creative asset"
-        width={500}
-        height={300}
-        className="rounded-lg"
-      />
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <Image
+          src="https://picsum.photos/500/300?random=1"
+          alt="Creative asset 1"
+          width={600}
+          height={400}
+          className="rounded-lg mb-4"
+        />
+      </div>
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <Image
+          src="https://picsum.photos/500/300?random=2"
+          alt="Creative asset 2"
+          width={600}
+          height={400}
+          className="rounded-lg mb-4"
+        />
+      </div>
     </div>
   );
 };
