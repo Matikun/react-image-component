@@ -10,8 +10,9 @@ const App: React.FC = () => {
         <Image
           src="https://picsum.photos/500/300?random=1"
           alt="Creative asset 1"
-          width={600}
-          height={400}
+          width={500}
+          height={300}
+          quality={80}
           className="rounded-lg mb-4"
         />
       </div>
@@ -19,8 +20,9 @@ const App: React.FC = () => {
         <Image
           src="https://picsum.photos/500/300?random=2"
           alt="Creative asset 2"
-          width={600}
-          height={400}
+          width={500}
+          height={300}
+          quality={60} // Lower quality for demo
           className="rounded-lg mb-4"
         />
       </div>

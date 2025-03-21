@@ -6,6 +6,8 @@ interface ImageProps {
   width: number;
   height: number;
   className?: string;
+  quality?: number;
+  placeholder?: string; // Base64 blurred image
 }
 
 const Image: React.FC<ImageProps> = ({
@@ -14,8 +16,11 @@ const Image: React.FC<ImageProps> = ({
   width,
   height,
   className = "",
+  quality = 75,
+  placeholder,
 }) => {
   const [isInView, setIsInView] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -45,16 +50,27 @@ const Image: React.FC<ImageProps> = ({
     };
   }, []);
 
+  const optimizedSrc = isInView
+    ? `${src}${src.includes("?") ? "&" : "?"}quality=${quality}`
+    : "";
+
   return (
     <div className={`relative ${className}`} style={{ width, height }}>
+      {placeholder && !isLoaded && (
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-sm"
+          style={{ backgroundImage: `url(${placeholder})` }}
+        />
+      )}
       <img
         ref={imgRef}
-        src={isInView ? src : ""}
+        src={optimizedSrc}
         alt={alt}
         width={width}
         height={height}
-        className="object-cover"
+        className="object-cover max-w-full h-auto"
         loading="lazy"
+        onLoad={() => setIsLoaded(true)}
       />
     </div>
   );
